@@ -7,7 +7,7 @@
 for ip in `cat address`
    do
       echo "################# testing $ip ##############"
-	  ssh-keyscan -t rsa $ip >> ~/.ssh/known_hosts 2>&1
+	  ssh-keyscan -t rsa $ip >> ~/.ssh/known_hosts 2>&1 #ssh-keyscan 收集服务器公钥rsa格式
 	  echo  'ls -a /tmp/' | setsid env SSH_ASKPASS='/home/ec2-user/pass.sh' DISPLAY='none:0' ssh ec2-user@"$ip" 2>&1
 	  if [[ "$?" == 0 ]]
 	     then
